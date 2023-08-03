@@ -521,6 +521,12 @@ section{
    color:var(--black);
 }
 
+.quick-view form .row .content .origin{
+   margin-top: 1rem;
+   font-size: 1.5rem;
+   color:var(--black);
+}
+
 .quick-view form .row .flex{
    display: flex;
    align-items: center;
