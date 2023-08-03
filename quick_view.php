@@ -48,6 +48,7 @@ include 'components/wishlist_cart.php';
       <input type="hidden" name="pid" value="<?= $fetch_product['id']; ?>">
       <input type="hidden" name="brand" value="<?= $fetch_product['brand']; ?>">
       <input type="hidden" name="name" value="<?= $fetch_product['name']; ?>">
+      <input type="hidden" name="orgin" value="<?= $fetch_product['origin']; ?>">
       <input type="hidden" name="price" value="<?= $fetch_product['price']; ?>">
       <input type="hidden" name="image" value="<?= $fetch_product['image_01']; ?>">
       <div class="row">
@@ -64,6 +65,7 @@ include 'components/wishlist_cart.php';
          <div class="content">
             <div class="brand"><?= $fetch_product['brand']; ?></div>
             <div class="name"><?= $fetch_product['name']; ?></div>
+            <div class="origin">Xuất xứ: <?= $fetch_product['origin']; ?></div>
             <div class="flex">
                <div class="price"><?= $fetch_product['price']; ?><span> VND</span></div>
                <input type="number" name="qty" class="qty" min="1" max="<?=$fetch_product['quantity']; ?>" onkeypress="if(this.value.length == 2) return false;" value="1">

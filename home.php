@@ -165,6 +165,7 @@ include 'components/wishlist_cart.php';
       <a href="quick_view.php?pid=<?= $fetch_product['id']; ?>" class="fas fa-eye"></a>
       <img src="uploaded_img/<?= $fetch_product['image_01']; ?>" alt="">
       <div class="name"><?= $fetch_product['name']; ?></div>
+      <div class="quantity">Hiện có: <?= $fetch_product['quantity']; ?></div>
       <div class="flex">
          <div class="price"><?=$fetch_product['price']; ?><span>VND</span></div>
          <input type="number" name="qty" class="qty" min="1" max="<?=$fetch_product['quantity']; ?>" onkeypress="if(this.value.length == 2) return false;" value="1">
