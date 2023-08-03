@@ -37,47 +37,25 @@ include 'components/wishlist_cart.php';
 
    <h1 class="heading">Danh Mục Sản Phẩm</h1>
    <div class="filter-price">
-      <span>0 $</span>
-      <input type="range" id="priceRange" name="priceRange" min="0" max="100000" step="1" value="50000">
-      <span id="priceLabel">100.000 $</span>
+      <span>100,000đ</span>
+      <input type="range" id="priceRange" name="priceRange" min="100000" max="100000000" step="100" value="100000000">
+      <span id="priceLabel">100,000,000đ</span>
    </div>
    <button id="filterButton" style="text-aline=center">Lọc</button>
-   <div class="filter">
-      <span>Loại Sản Phẩm</span>
-      <li><a href="category.php?category=giày">Giày</a></li>
-      <li><a href="category.php?category=kính">Kính</a></li>
-      <li><a href="category.php?category=áo">Áo</a></li>
-      <li><a href="category.php?category=đồng hồ">Đồng Hồ</a></li>
-      <li><a href="category.php?category=túi sách">Túi Sách</a></li>
-      <li><a href="category.php?category=phụ kiện">Phụ Kiện</a></li>
-      <span>Giới Tính</span>
-      <li><a href="category.php?category=Nam">Nam</a></li>
-      <li><a href="category.php?category=Nữ">Nữ</a></li>
-      <li><a href="category.php?category=Trẻ con">Trẻ Con</a></li>
-      <span>Thương Hiệu</span>
-      <li><a href="category.php?category=lv">LOUIS VUITTON</a></li>
-      <li><a href="category.php?category=gucci">GUCCI</a></li>
-      <li><a href="category.php?category=burberry">BURBERRY</a></li>
-      <li><a href="category.php?category=hermes">HERMES</a></li>
-      <li><a href="category.php?category=chanel">CHANEL</a></li>
-      <li><a href="category.php?category=dior">DIOR</a></li>
-      <li><a href="category.php?category=balenciaga">BALENCIAGA</a></li>
-      <li><a href="category.php?category=rolex">ROLEX</a></li>
-   </div>
+
    <div class="box-container">
 
    <?php
-         $category = $_GET['category'];
-         $minPrice = isset($_GET['minPrice']) ? (int)$_GET['minPrice'] : 0;
-         $maxPrice = isset($_GET['maxPrice']) ? (int)$_GET['maxPrice'] : 100000000;
-         
-         $select_products = $conn->prepare("SELECT * FROM `products` WHERE name LIKE :category AND price BETWEEN :minPrice AND :maxPrice"); 
-         $select_products->bindValue(':category', '%' . $category . '%', PDO::PARAM_STR);
-         $select_products->bindParam(':minPrice', $minPrice, PDO::PARAM_INT);
-         $select_products->bindParam(':maxPrice', $maxPrice, PDO::PARAM_INT);
-         $select_products = $conn->prepare("SELECT * FROM `products` WHERE tag LIKE '%$category%'"); 
+    $category = isset($_GET['category']) ? $_GET['category'] : '';
+    $minPrice = isset($_GET['minPrice']) ? (int)$_GET['minPrice'] : 10000;
+    $maxPrice = isset($_GET['maxPrice']) ? (int)$_GET['maxPrice'] : 100000000;
 
-         $select_products->execute();
+    // Modify the SQL query to filter by category
+    $select_products = $conn->prepare("SELECT * FROM `products` WHERE tag LIKE '%$category%' AND price BETWEEN :minPrice AND :maxPrice");
+    $select_products->bindParam(':minPrice', $minPrice, PDO::PARAM_INT);
+    $select_products->bindParam(':maxPrice', $maxPrice, PDO::PARAM_INT);
+
+    $select_products->execute();
      if($select_products->rowCount() > 0){
       while($fetch_product = $select_products->fetch(PDO::FETCH_ASSOC)){
    ?>
@@ -111,7 +89,7 @@ include 'components/wishlist_cart.php';
 
     priceRange.addEventListener('input', () => {
         const selectedPrice = priceRange.value;
-        priceLabel.innerText =selectedPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " $";
+        priceLabel.innerText = selectedPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "đ";
     });
 
     filterButton.addEventListener('click', () => {
