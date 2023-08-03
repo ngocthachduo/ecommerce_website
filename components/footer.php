@@ -4,7 +4,7 @@
 
       <div class="box">
          <h3>quick links</h3>
-         <a href="home.php"> <i class="fas fa-angle-right"></i>Trang Chủ</a>
+         <a href="index.php"> <i class="fas fa-angle-right"></i>Trang Chủ</a>
          <a href="about.php"> <i class="fas fa-angle-right"></i>Giới Thiệu</a>
          <a href="shop.php"> <i class="fas fa-angle-right"></i>Sản Phẩm</a>
          <a href="contact.php"> <i class="fas fa-angle-right"></i>Liên Hệ</a>
