@@ -37,18 +37,26 @@ include 'components/wishlist_cart.php';
 
    <h1 class="heading">Danh Mục Sản Phẩm</h1>
    <div class="filter-price">
-      <span>1000 đ</span>
-      <input type="range" id="priceRange" name="priceRange" min="100" max="10000" step="100" value="50000">
+      <span>100,000đ</span>
+      <input type="range" id="priceRange" name="priceRange" min="100000" max="100000000" step="100" value="100000000">
       <span id="priceLabel">100,000,000 đ</span>
    </div>
    <button id="filterButton" style="text-aline=center">Lọc</button>
    <div class="box-container">
       <?php
-      // $minPrice = isset($_GET['minPrice']) ? (int)$_GET['minPrice'] : 0;
-      // $maxPrice = isset($_GET['maxPrice']) ? (int)$_GET['maxPrice'] : 100000;
-      // $select_products->bindParam(':minPrice', $minPrice, PDO::PARAM_INT);
-      // $select_products->bindParam(':maxPrice', $maxPrice, PDO::PARAM_INT);
+      $minPrice = isset($_GET['minPrice']) ? (int)$_GET['minPrice'] : 100000;
+      $maxPrice = isset($_GET['maxPrice']) ? (int)$_GET['maxPrice'] : 10000000;
+      $category = isset($_GET['category']) ? $_GET['category'] : ''; // Xử lý tham số "category"
+
       $select_products = $conn->prepare("SELECT * FROM `products`"); 
+
+      if (isset($_GET['filter'])) {
+         // Lọc và hiển thị sản phẩm theo giá
+         $select_products = $conn->prepare("SELECT * FROM `products` WHERE price BETWEEN :minPrice AND :maxPrice");
+         $select_products->bindParam(':minPrice', $minPrice, PDO::PARAM_INT);
+         $select_products->bindParam(':maxPrice', $maxPrice, PDO::PARAM_INT);
+      }
+
       $select_products->execute();
       if($select_products->rowCount() > 0){
          while($fetch_product = $select_products->fetch(PDO::FETCH_ASSOC)){
@@ -83,13 +91,13 @@ include 'components/wishlist_cart.php';
 
     priceRange.addEventListener('input', () => {
         const selectedPrice = priceRange.value;
-        priceLabel.innerText =selectedPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " $";
+        priceLabel.innerText = selectedPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " đ";
     });
 
     filterButton.addEventListener('click', () => {
         const minPrice = 0; // Minimum price
         const maxPrice = priceRange.value;
-        const newUrl = window.location.pathname + '?category=<?= urlencode($category) ?>&minPrice=' + minPrice + '&maxPrice=' + maxPrice;
+        const newUrl = window.location.pathname + '?category=<?= urlencode($category) ?>&minPrice=' + minPrice + '&maxPrice=' + maxPrice + '&filter=true';
         window.location.href = newUrl;
     });
 </script>
