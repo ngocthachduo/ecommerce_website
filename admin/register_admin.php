@@ -23,14 +23,14 @@ if(isset($_POST['submit'])){
    $select_admin->execute([$name]);
 
    if($select_admin->rowCount() > 0){
-      $message[] = 'username already exist!';
+      $message[] = 'người dùng đã tồn tại!';
    }else{
       if($pass != $cpass){
-         $message[] = 'confirm password not matched!';
+         $message[] = 'mật khẩu không khớp!';
       }else{
          $insert_admin = $conn->prepare("INSERT INTO `admins`(name, password) VALUES(?,?)");
          $insert_admin->execute([$name, $cpass]);
-         $message[] = 'new admin registered successfully!';
+         $message[] = 'đăng ký thành công!';
       }
    }
 
@@ -58,11 +58,11 @@ if(isset($_POST['submit'])){
 <section class="form-container">
 
    <form action="" method="post">
-      <h3>register now</h3>
-      <input type="text" name="name" required placeholder="enter your username" maxlength="20"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="password" name="pass" required placeholder="enter your password" maxlength="20"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="password" name="cpass" required placeholder="confirm your password" maxlength="20"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="submit" value="register now" class="btn" name="submit">
+      <h3>đăng ký ngay</h3>
+      <input type="text" name="name" required placeholder="nhập username" maxlength="20"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="password" name="pass" required placeholder="nhập mật khẩu" maxlength="20"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="password" name="cpass" required placeholder="xác nhận mật khẩu" maxlength="20"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="submit" value="đăng ký" class="btn" name="submit">
    </form>
 
 </section>

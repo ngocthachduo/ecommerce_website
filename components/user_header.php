@@ -15,10 +15,10 @@
 
    <section class="flex">
 
-      <a href="home.php" class="logo">2H<span>.</span></a>
+      <a href="index.php" class="logo">2H<span>.</span></a>
 
       <nav class="navbar">
-         <a href="home.php"onmouseover="hideNavbar2()">Trang Chủ</a>
+         <a href="index.php"onmouseover="hideNavbar2()">Trang Chủ</a>
          <a href="about.php"onmouseover="hideNavbar2()">Giới Thiệu</a>
          <a href="orders.php"onmouseover="hideNavbar2()">Đơn Hàng</a>
          <a href="shop.php" class="link-navbar2" onmouseover="showNavbar2()" >Sản Phẩm</a>
@@ -51,10 +51,6 @@
          ?>
          <p><?= $fetch_profile["name"]; ?></p>
          <a href="update_user.php" class="btn">Cập Nhập Hồ Sơ</a>
-         <div class="flex-btn">
-            <a href="user_register.php" class="option-btn" style="padding:10px 10px">Đăng Ký</a>
-            <a href="user_login.php" class="option-btn"style="padding:10px 10px">Đăng Nhập</a>
-         </div>
          <a href="components/user_logout.php" class="delete-btn" onclick="return confirm('Bạn Muốn Đăng Xuất?');">Đăng Xuất</a> 
          <?php
             }else{

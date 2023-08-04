@@ -48,8 +48,8 @@ include 'components/wishlist_cart.php';
             <img src="images/home-img-1.png" alt="">
          </div>
          <div class="content">
-            <span>upto 50% off</span>
-            <h3>latest smartphones</h3>
+            <span>giảm tới 25%</span>
+            <h3>mắt kính sành điệu</h3>
             <a href="shop.php" class="btn">Mua ngay</a>
          </div>
       </div>
@@ -59,8 +59,8 @@ include 'components/wishlist_cart.php';
             <img src="images/home-img-2.png" alt="">
          </div>
          <div class="content">
-            <span>upto 50% off</span>
-            <h3>latest watches</h3>
+            <span>giảm tới 15%</span>
+            <h3>đồng hồ thanh lịch</h3>
             <a href="shop.php" class="btn">Mua ngay</a>
          </div>
       </div>
@@ -70,8 +70,8 @@ include 'components/wishlist_cart.php';
             <img src="images/home-img-3.png" alt="">
          </div>
          <div class="content">
-            <span>upto 50% off</span>
-            <h3>latest headsets</h3>
+            <span>5% ưu đãi</span>
+            <h3>giày thể thao năng động</h3>
             <a href="shop.php" class="btn">Mua ngay</a>
          </div>
       </div>
@@ -144,7 +144,7 @@ include 'components/wishlist_cart.php';
 
 <section class="home-products">
 
-   <h1 class="heading">Sản Phẩm Mới Nhât</h1>
+   <h1 class="heading">Sản Phẩm Mới Nhất</h1>
 
    <div class="swiper products-slider">
 
@@ -159,14 +159,16 @@ include 'components/wishlist_cart.php';
    <form action="" method="post" class="swiper-slide slide">
       <input type="hidden" name="pid" value="<?= $fetch_product['id']; ?>">
       <input type="hidden" name="name" value="<?= $fetch_product['name']; ?>">
+      <input type="hidden" name="quantity" value="<?= $fetch_product['quantity']; ?>">
       <input type="hidden" name="price" value="<?= $fetch_product['price']; ?>">
       <input type="hidden" name="image" value="<?= $fetch_product['image_01']; ?>">
       <button class="fas fa-heart" type="submit" name="add_to_wishlist"></button>
       <a href="quick_view.php?pid=<?= $fetch_product['id']; ?>" class="fas fa-eye"></a>
       <img src="uploaded_img/<?= $fetch_product['image_01']; ?>" alt="">
       <div class="name"><?= $fetch_product['name']; ?></div>
+      <div class="quantity">Hiện có: <?= $fetch_product['quantity']; ?></div>
       <div class="flex">
-         <div class="price"><?=$fetch_product['price']; ?><span>VND</span></div>
+         <div class="price"><?=number_format($fetch_product['price'],0,".",",") ; ?><span>đ</span></div>
          <input type="number" name="qty" class="qty" min="1" max="<?=$fetch_product['quantity']; ?>" onkeypress="if(this.value.length == 2) return false;" value="1">
       </div>
       <input type="submit" value="Thêm vào giỏ hàng" class="btn" name="add_to_cart">

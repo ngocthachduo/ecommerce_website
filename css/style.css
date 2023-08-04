@@ -302,13 +302,13 @@ section{
 
 .home-bg .home .slide .content span{
    font-size: 2rem;
-   color:var(--white);
+   color:var(--black);
 }
 
 .home-bg .home .slide .content h3{
    margin-top: 1rem;
    font-size: 4rem;
-   color:var(--white);
+   color:var(--black);
    text-transform: uppercase;
 }
 
@@ -504,16 +504,22 @@ section{
    margin-bottom: 2rem;
 }
 
-.quick-view form .row .content{
+.quick-view form .row .content {
    flex:1 1 40rem;
 }
 
-.quick-view form .row .content .brand {
+.quick-view form .row .content .brand{
    font-size: 2rem;
    color:var(--black);
    text-transform: uppercase;
    font-weight: 800;
    margin-bottom: 1rem;
+}
+
+.quick-view form .row .content .origin, .state , .quantity {
+   font-size: 1.8rem;
+   color:var(--orange);
+   font-style: italic;
 }
 
 .quick-view form .row .content .name{
@@ -560,8 +566,31 @@ section{
    align-items: flex-start;
 }
 .products #filterButton{
-   cursor: pointer
+   background-color: var(--red);
+   border: none;
+   color: white;
+   padding: 1rem;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 1.5rem;
+   margin-bottom: 2rem;
+   border-radius: 50%;
+   cursor: pointer;
 }
+
+.products .filter-price {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-bottom: 2rem;
+   font-size: 1.5rem;
+ }
+ 
+ .products #priceRange {
+   width: 50%;
+ }
+ 
 .products .box-container .box{
    position: relative;
    background-color: var(--white);

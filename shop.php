@@ -38,7 +38,7 @@ include 'components/wishlist_cart.php';
    <h1 class="heading">Danh Mục Sản Phẩm</h1>
    <div class="filter-price">
       <span>100,000đ</span>
-      <input type="range" id="priceRange" name="priceRange" min="100000" max="100000000" step="100" value="100000000">
+      <input type="range" id="priceRange" name="priceRange" min="100000" max="100000000" step="1000000" value="50000000">
       <span id="priceLabel">100,000,000 đ</span>
    </div>
    <button id="filterButton" style="text-aline=center">Lọc</button>
@@ -64,14 +64,16 @@ include 'components/wishlist_cart.php';
       <form action="" method="post" class="box">
          <input type="hidden" name="pid" value="<?= $fetch_product['id']; ?>">
          <input type="hidden" name="name" value="<?= $fetch_product['name']; ?>">
+         <input type="hidden" name="quantity" value="<?= $fetch_product['quantity']; ?>">
          <input type="hidden" name="price" value="<?= $fetch_product['price']; ?>">
          <input type="hidden" name="image" value="<?= $fetch_product['image_01']; ?>">
          <button class="fas fa-heart" type="submit" name="add_to_wishlist"></button>
          <a href="quick_view.php?pid=<?= $fetch_product['id']; ?>" class="fas fa-eye"></a>
          <img src="uploaded_img/<?= $fetch_product['image_01']; ?>" alt="">
          <div class="name"><?= $fetch_product['name']; ?></div>
+         <div class="quantity">Hiện có: <?= $fetch_product['quantity']; ?></div>
          <div class="flex">
-            <div class="price"><?=number_format($fetch_product['price'],0,".",",") ; ?><span>$</span></div>
+            <div class="price"><?=number_format($fetch_product['price'],0,".",",") ; ?><span>đ</span></div>
             <input type="number" name="qty" class="qty" min="1" max="99" onkeypress="if(this.value.length == 2) return false;" value="1">
          </div>
          <input type="submit" value="Thêm Vào Giỏ Hàng" class="btn" name="add_to_cart">

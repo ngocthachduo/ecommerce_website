@@ -52,7 +52,7 @@ if(!isset($admin_id)){
                }
             }
          ?>
-         <h3><span></span><?= $total_pendings; ?><span> VND</span></h3>
+         <h3><span></span><?= number_format($total_pendings,0,".",","); ?><span>đ</span></h3>
          <p>Đang chờ</p>
          <a href="placed_orders.php" class="btn">Xem các đơn hàng</a>
       </div>
@@ -68,7 +68,7 @@ if(!isset($admin_id)){
                }
             }
          ?>
-         <h3><span>$</span><?= $total_completes; ?><span>/-</span></h3>
+         <h3><?= number_format($total_completes,0,".",","); ?><span>đ</span></h3>
          <p>Đơn hàng đã hoàn thành</p>
          <a href="placed_orders.php" class="btn">Xem các đơn hàng</a>
       </div>
@@ -103,7 +103,7 @@ if(!isset($admin_id)){
          ?>
          <h3><?= $number_of_users; ?></h3>
          <p>Người dùng</p>
-         <a href="users_accounts.php" class="btn">Danh sách người dùng</a>
+         <a href="users_accounts.php" class="btn">Xem người dùng</a>
       </div>
 
       <div class="box">
@@ -125,7 +125,7 @@ if(!isset($admin_id)){
          ?>
          <h3><?= $number_of_messages; ?></h3>
          <p>Tin nhắn</p>
-         <a href="messagess.php" class="btn">Xem tin nhắn</a>
+         <a href="messages.php" class="btn">Xem tin nhắn</a>
       </div>
 
    </div>

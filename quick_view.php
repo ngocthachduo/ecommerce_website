@@ -48,6 +48,9 @@ include 'components/wishlist_cart.php';
       <input type="hidden" name="pid" value="<?= $fetch_product['id']; ?>">
       <input type="hidden" name="brand" value="<?= $fetch_product['brand']; ?>">
       <input type="hidden" name="name" value="<?= $fetch_product['name']; ?>">
+      <input type="hidden" name="origin" value="<?= $fetch_product['origin']; ?>">
+      <input type="hidden" name="state" value="<?= $fetch_product['state']; ?>">
+      <input type="hidden" name="quanity" value="<?= $fetch_product['quantity']; ?>">
       <input type="hidden" name="price" value="<?= $fetch_product['price']; ?>">
       <input type="hidden" name="image" value="<?= $fetch_product['image_01']; ?>">
       <div class="row">
@@ -64,14 +67,17 @@ include 'components/wishlist_cart.php';
          <div class="content">
             <div class="brand"><?= $fetch_product['brand']; ?></div>
             <div class="name"><?= $fetch_product['name']; ?></div>
+            <div class="origin">Xuất xứ: <?= $fetch_product['origin']; ?></div>
+            <div class="state">Độ mới: <?= $fetch_product['state']; ?>%</div>
+            <div class="quantity">Hiện có: <?= $fetch_product['quantity']; ?></div>
             <div class="flex">
-               <div class="price"><?= $fetch_product['price']; ?><span> VND</span></div>
+               <div class="price"><?=number_format($fetch_product['price'],0,".",",") ; ?><span>đ</span></div>
                <input type="number" name="qty" class="qty" min="1" max="<?=$fetch_product['quantity']; ?>" onkeypress="if(this.value.length == 2) return false;" value="1">
             </div>
             <div class="details"><?= $fetch_product['details']; ?></div>
             <div class="flex-btn">
-               <input type="submit" value="add to cart" class="btn" name="add_to_cart">
-               <input class="option-btn" type="submit" name="add_to_wishlist" value="add to wishlist">
+               <input type="submit" value="Thêm vào giỏ hàng" class="btn" name="add_to_cart">
+               <input class="option-btn" type="submit" name="add_to_wishlist" value="Yêu thích">
             </div>
          </div>
       </div>

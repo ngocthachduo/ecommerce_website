@@ -21,7 +21,7 @@ if(isset($_POST['order'])){
    $email = filter_var($email, FILTER_SANITIZE_STRING);
    $method = $_POST['method'];
    $method = filter_var($method, FILTER_SANITIZE_STRING);
-   $address = 'flat no. '. $_POST['flat'] .', '. $_POST['street'] .', '. $_POST['city'] .', '. $_POST['state'] .', '. $_POST['country'] .' - '. $_POST['pin_code'];
+   $address = $_POST['flat'] .', '. $_POST['state'] .', '. $_POST['city'] .', '. $_POST['country'] ;
    $address = filter_var($address, FILTER_SANITIZE_STRING);
    $total_products = $_POST['total_products'];
    $total_price = $_POST['total_price'];
@@ -37,9 +37,9 @@ if(isset($_POST['order'])){
       $delete_cart = $conn->prepare("DELETE FROM `cart` WHERE user_id = ?");
       $delete_cart->execute([$user_id]);
 
-      $message[] = 'order placed successfully!';
+      $message[] = 'đặt hàng thành công!';
    }else{
-      $message[] = 'your cart is empty';
+      $message[] = 'giỏ hàng đang trống';
    }
 
 }
@@ -69,7 +69,7 @@ if(isset($_POST['order'])){
 
    <form action="" method="POST">
 
-   <h3>your orders</h3>
+   <h3>Đơn hàng của bạn</h3>
 
       <div class="display-orders">
       <?php
@@ -83,7 +83,7 @@ if(isset($_POST['order'])){
                $total_products = implode($cart_items);
                $grand_total += ($fetch_cart['price'] * $fetch_cart['quantity']);
       ?>
-         <p> <?= $fetch_cart['name']; ?> <span>(<?= '$'.$fetch_cart['price'].'/- x '. $fetch_cart['quantity']; ?>)</span> </p>
+         <p> <?= $fetch_cart['name']; ?> <span>(<?=number_format($fetch_cart['price'],0,".",",") ?> SL: <?=  $fetch_cart['quantity']; ?>)</span> </p>
       <?php
             }
          }else{
@@ -92,56 +92,47 @@ if(isset($_POST['order'])){
       ?>
          <input type="hidden" name="total_products" value="<?= $total_products; ?>">
          <input type="hidden" name="total_price" value="<?= $grand_total; ?>" value="">
-         <div class="grand-total">grand total : <span>$<?= $grand_total; ?>/-</span></div>
+         <div class="grand-total">Tổng tiền : <span><?= number_format($grand_total,0,".",","); ?>đ</span></div>
       </div>
 
-      <h3>place your orders</h3>
+      <h3>Điền thông tin</h3>
 
       <div class="flex">
          <div class="inputBox">
-            <span>your name :</span>
-            <input type="text" name="name" placeholder="enter your name" class="box" maxlength="20" required>
+            <span>họ và tên :</span>
+            <input type="text" name="name" placeholder="nhập họ và tên" class="box" maxlength="20" required>
          </div>
          <div class="inputBox">
-            <span>your number :</span>
-            <input type="number" name="number" placeholder="enter your number" class="box" min="0" max="9999999999" onkeypress="if(this.value.length == 10) return false;" required>
+            <span>sđt :</span>
+            <input type="number" name="number" placeholder="nhập số điện thoại" class="box" min="0" max="9999999999" onkeypress="if(this.value.length == 10) return false;" required>
          </div>
          <div class="inputBox">
-            <span>your email :</span>
-            <input type="email" name="email" placeholder="enter your email" class="box" maxlength="50" required>
+            <span>email :</span>
+            <input type="email" name="email" placeholder="nhập email" class="box" maxlength="50" required>
          </div>
          <div class="inputBox">
-            <span>payment method :</span>
+            <span>phương thức thanh toán :</span>
             <select name="method" class="box" required>
-               <option value="cash on delivery">cash on delivery</option>
-               <option value="credit card">credit card</option>
-               <option value="paytm">paytm</option>
+               <option value="cash on delivery">thanh toán khi nhận hàng</option>
+               <option value="credit card">thẻ tín dụng</option>
                <option value="paypal">paypal</option>
             </select>
          </div>
          <div class="inputBox">
-            <span>address line 01 :</span>
-            <input type="text" name="flat" placeholder="e.g. flat number" class="box" maxlength="50" required>
+            <span>địa chỉ:</span>
+            <input type="text" name="flat" placeholder="e.g. 70 tô ký" class="box" maxlength="50" required>
          </div>
          <div class="inputBox">
-            <span>address line 02 :</span>
-            <input type="text" name="street" placeholder="e.g. street name" class="box" maxlength="50" required>
+            <span>tỉnh/thành phố :</span>
+            <input type="text" name="city" placeholder="e.g. hcm" class="box" maxlength="50" required>
          </div>
          <div class="inputBox">
-            <span>city :</span>
-            <input type="text" name="city" placeholder="e.g. mumbai" class="box" maxlength="50" required>
+            <span>quận/huyện :</span>
+            <input type="text" name="state" placeholder="e.g. quận 1" class="box" maxlength="50" required>
          </div>
          <div class="inputBox">
-            <span>state :</span>
-            <input type="text" name="state" placeholder="e.g. maharashtra" class="box" maxlength="50" required>
-         </div>
-         <div class="inputBox">
-            <span>country :</span>
-            <input type="text" name="country" placeholder="e.g. India" class="box" maxlength="50" required>
-         </div>
-         <div class="inputBox">
-            <span>pin code :</span>
-            <input type="number" min="0" name="pin_code" placeholder="e.g. 123456" min="0" max="999999" onkeypress="if(this.value.length == 6) return false;" class="box" required>
+            <span>quốc gia :</span>
+            <input type="text" name="country" placeholder="e.g. vietnam" class="box" maxlength="50" required>
          </div>
       </div>
 

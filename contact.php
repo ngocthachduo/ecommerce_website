@@ -25,7 +25,7 @@ if(isset($_POST['send'])){
    $select_message->execute([$name, $email, $number, $msg]);
 
    if($select_message->rowCount() > 0){
-      $message[] = 'already sent message!';
+      $message[] = 'đã gửi tin nahứn!';
    }else{
 
       $insert_message = $conn->prepare("INSERT INTO `messages`(user_id, name, email, number, message) VALUES(?,?,?,?,?)");
@@ -62,12 +62,12 @@ if(isset($_POST['send'])){
 <section class="contact">
 
    <form action="" method="post">
-      <h3>get in touch</h3>
-      <input type="text" name="name" placeholder="enter your name" required maxlength="20" class="box">
-      <input type="email" name="email" placeholder="enter your email" required maxlength="50" class="box">
-      <input type="number" name="number" min="0" max="9999999999" placeholder="enter your number" required onkeypress="if(this.value.length == 10) return false;" class="box">
-      <textarea name="msg" class="box" placeholder="enter your message" cols="30" rows="10"></textarea>
-      <input type="submit" value="send message" name="send" class="btn">
+      <h3>liên hệ</h3>
+      <input type="text" name="name" placeholder="nhập tên" required maxlength="20" class="box">
+      <input type="email" name="email" placeholder="nhập email" required maxlength="50" class="box">
+      <input type="number" name="number" min="0" max="9999999999" placeholder="nhập số điện thoại" required onkeypress="if(this.value.length == 10) return false;" class="box">
+      <textarea name="msg" class="box" placeholder="tin nhắn của bạn" cols="30" rows="10"></textarea>
+      <input type="submit" value="gửi" name="send" class="btn">
    </form>
 
 </section>

@@ -115,7 +115,7 @@ if(isset($_POST['update'])){
 
 <section class="update-product">
 
-   <h1 class="heading">update product</h1>
+   <h1 class="heading">cập nhật sản phẩm</h1>
 
    <?php
       $update_id = $_GET['update'];
@@ -139,36 +139,36 @@ if(isset($_POST['update'])){
             <img src="../uploaded_img/<?= $fetch_products['image_03']; ?>" alt="">
          </div>
       </div>
-      <span>update name</span>
+      <span>tên</span>
       <input type="text" name="name" required class="box" maxlength="100" placeholder="enter product name" value="<?= $fetch_products['name']; ?>">
-      <span>update brand</span>
+      <span>thương hiệu</span>
       <input type="text" name="brand" required class="box" maxlength="100" placeholder="enter product brand" value="<?= $fetch_products['brand']; ?>">
-      <span>update origin</span>
+      <span>xuất xứ</span>
       <input type="text" name="origin" required class="box" maxlength="100" placeholder="enter product origin" value="<?= $fetch_products['origin']; ?>">
-      <span>update quantity</span>
+      <span>số lượng</span>
       <input type="number" name="quantity" required class="box" min="0" max="10000" placeholder="enter product quantity" value="<?= $fetch_products['quantity']; ?>">
-      <span>update price</span>
+      <span>giá</span>
       <input type="number" name="price" required class="box" min="0" max="9999999999" placeholder="enter product price" onkeypress="if(this.value.length == 6) return false;" value="<?= $fetch_products['price']; ?>">
-      <span>update details</span>
+      <span>mô tả</span>
       <textarea name="details" class="box" required cols="30" rows="10"><?= $fetch_products['details']; ?></textarea>
-      <span>update tag</span>
+      <span>tag</span>
       <textarea name="tag" class="box" required cols="30" rows="10"><?= $fetch_products['tag']; ?></textarea>
-      <span>update image 01</span>
+      <span>ảnh 1</span>
       <input type="file" name="image_01" accept="image/jpg, image/jpeg, image/png, image/webp" class="box">
-      <span>update image 02</span>
+      <span>ảnh 2</span>
       <input type="file" name="image_02" accept="image/jpg, image/jpeg, image/png, image/webp" class="box">
-      <span>update image 03</span>
+      <span>ảnh 3</span>
       <input type="file" name="image_03" accept="image/jpg, image/jpeg, image/png, image/webp" class="box">
       <div class="flex-btn">
          <input type="submit" name="update" class="btn" value="update">
-         <a href="products.php" class="option-btn">go back</a>
+         <a href="products.php" class="option-btn">quay lại</a>
       </div>
    </form>
    
    <?php
          }
       }else{
-         echo '<p class="empty">no product found!</p>';
+         echo '<p class="empty">không tìm ra sản phẩm!</p>';
       }
    ?>
 

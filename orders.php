@@ -54,7 +54,7 @@ if(isset($_SESSION['user_id'])){
       <p>Địa Chỉ : <span><?= $fetch_orders['address']; ?></span></p>
       <p>Phương Thức Thanh Toán : <span><?= $fetch_orders['method']; ?></span></p>
       <p>Đơn Hàng Của Bạn: <span><?= $fetch_orders['total_products']; ?></span></p>
-      <p>Tổng Tiền : <span><?= number_format($fetch_orders['total_price'], 0, ".", ","); ?> $</span></p>
+      <p>Tổng Tiền : <span><?= number_format($fetch_orders['total_price'], 0, ".", ","); ?> đ</span></p>
       <p> Tình Trạng Thanh Toán : <span style="color:<?php if($fetch_orders['payment_status'] == 'pending'){ echo 'red'; }else{ echo 'green'; }; ?>"><?= $fetch_orders['payment_status']; ?></span> </p>
    </div>
    <?php
