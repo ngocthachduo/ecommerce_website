@@ -275,7 +275,18 @@ section{
    background-size: cover;
    background-position: center;
 }
+body.sun .home-bg {
+   background: url(../images/home-bg1.png) no-repeat;
+   background-size: cover;
+   background-position: center;
+}
 
+/* Khi có lớp moon */
+body.moon .home-bg {
+   background: url(../images/home-bg.png) no-repeat;
+   background-size: cover;
+   background-position: center;
+}
 .home-bg .home .slide{
    display: flex;
    align-items: center;
@@ -402,6 +413,7 @@ section{
    font-size: 1.8rem;
    color:var(--black);
    border-radius: .5rem;
+   background-color: var(--white);
 }
 
 .home-products .slide .flex .price{
@@ -665,6 +677,7 @@ section{
    font-size: 1.8rem;
    color:var(--black);
    border-radius: .5rem;
+   background-color: var(--white);
 }
 
 .products .box-container .box .flex .price{

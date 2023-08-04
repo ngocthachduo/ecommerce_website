@@ -12,7 +12,11 @@
 ?>
 
 <header class="header">
-
+   <style>
+      .hidden{
+         display: none;
+      }
+   </style>
    <section class="flex">
 
       <a href="index.php" class="logo">2H<span>.</span></a>
@@ -36,11 +40,64 @@
             $total_cart_counts = $count_cart_items->rowCount();
          ?>
          <div id="menu-btn" class="fas fa-bars"></div>
+         <a href=""id="Sun"><i class="fa-solid fa-sun"></i></a>
+         <a href=""id="Moon" class="hidden"><i class="fa-solid fa-moon"></i></a>
          <a href="search_page.php"><i class="fas fa-search"></i></a>
          <a href="wishlist.php"><i class="fas fa-heart"></i><span>(<?= $total_wishlist_counts; ?>)</span></a>
          <a href="cart.php"><i class="fas fa-shopping-cart"></i><span>(<?= $total_cart_counts; ?>)</span></a>
          <div id="user-btn" class="fas fa-user"></div>
       </div>
+      <script>
+  const sunIcon = document.getElementById('Sun');
+  const moonIcon = document.getElementById('Moon');
+  const body = document.body;
+
+  // Lấy trạng thái màu từ localStorage (nếu có)
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    applyDarkTheme();
+  } else {
+    applyLightTheme();
+  }
+
+  sunIcon.addEventListener('click', (event) => {
+    event.preventDefault();
+    applyLightTheme();
+  });
+
+  moonIcon.addEventListener('click', (event) => {
+    event.preventDefault();
+    applyDarkTheme();
+  });
+
+  function applyLightTheme() {
+    document.documentElement.style.setProperty('--black', '#fff');
+    document.documentElement.style.setProperty('--white', '#333');
+    document.documentElement.style.setProperty('--light-color', '#eee');
+    document.documentElement.style.setProperty('--light-bg', '#666');
+    body.classList.remove('moon');
+    body.classList.add('sun');
+    sunIcon.classList.add('hidden');
+    moonIcon.classList.remove('hidden');
+
+    // Lưu trạng thái màu sáng vào localStorage
+    localStorage.setItem('theme', 'light');
+  }
+
+  function applyDarkTheme() {
+    document.documentElement.style.setProperty('--black', '#333');
+    document.documentElement.style.setProperty('--white', '#fff');
+    document.documentElement.style.setProperty('--light-color', '#666');
+    document.documentElement.style.setProperty('--light-bg', '#eee');
+    body.classList.remove('sun');
+    body.classList.add('moon');
+    moonIcon.classList.add('hidden');
+    sunIcon.classList.remove('hidden');
+
+    // Lưu trạng thái màu tối vào localStorage
+    localStorage.setItem('theme', 'dark');
+  }
+</script>
 
       <div class="profile">
          <?php          
@@ -66,6 +123,7 @@
          
          
       </div>
+
 
    </section>
    <section class="navbar2" id="navbar2" onmouseleave="hideNavbar2()">
